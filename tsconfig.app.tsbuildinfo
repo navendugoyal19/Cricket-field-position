@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/types.ts","./src/components/controlpanel.tsx","./src/components/cricketfield.tsx","./src/components/fielderpanel.tsx","./src/components/savedsetupsmodal.tsx","./src/utils/exportimage.ts","./src/utils/fieldpositions.ts","./src/utils/positiondetection.ts","./src/utils/storage.ts"],"version":"5.9.3"}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import './App.css';
 import type { Fielder } from './types';
-import { getPresetFielders, FIELD_PRESETS, ALL_POSITIONS } from './utils/fieldPositions';
+import { getPresetFielders, FIELD_PRESETS } from './utils/fieldPositions';
 import { exportFieldAsImage } from './utils/exportImage';
 import { detectPosition } from './utils/positionDetection';
 import type { SavedSetup } from './types';
@@ -131,7 +131,7 @@ function App() {
 
     // Detect the position based on the new coordinates
     const detectedPosition = detectPosition(storedX, clampedY, isLeftHanded);
-    
+
     setFielders(prev => prev.map(f => {
       if (f.id === draggingId) {
         // Update position with detected name/label
