@@ -24,59 +24,63 @@ import { getFielderColor } from '../utils/fieldPositions';
 // Carefully placed based on cricket field layout
 const POSITION_LABELS = [
     // ============================================
-    // Field bounds: 5-95% to stay inside the oval
-    // 30-yard circle: ~22% inset
+    // BASED ON SCREENSHOT ANALYSIS
+    // 30-yard circle appears at ~20% inset visually
+    // Ring fielders must be at x: 25-75%
     // ============================================
 
-    // BEHIND WICKET - Boundary (y: 8-18%)
-    { name: 'Third man', x: 18, y: 12, size: 'large' },
-    { name: 'Fine leg', x: 82, y: 12, size: 'large' },
-    { name: 'Long leg', x: 72, y: 8, size: 'small' },
+    // BOUNDARY - Behind wicket (y < 20%)
+    { name: 'Third man', x: 20, y: 10, size: 'large' },
+    { name: 'Fine leg', x: 80, y: 10, size: 'large' },
 
-    // SLIPS AREA (y: 26-32%)
-    { name: 'Slips', x: 36, y: 26, size: 'large' },
-    { name: '1st', x: 43, y: 27, size: 'small' },
-    { name: '2nd', x: 40, y: 28, size: 'small' },
-    { name: '3rd', x: 37, y: 29, size: 'small' },
-    { name: '4th', x: 34, y: 30, size: 'small' },
+    // SLIPS AREA - Inside circle (y: 24-32%)
+    { name: 'Slips', x: 38, y: 25, size: 'large' },
+    { name: '1st', x: 44, y: 26, size: 'small' },
+    { name: '2nd', x: 41, y: 27, size: 'small' },
+    { name: '3rd', x: 38, y: 28, size: 'small' },
+    { name: '4th', x: 35, y: 29, size: 'small' },
 
-    // GULLY & CLOSE CATCHERS (y: 30-38%)
-    { name: 'Gully', x: 26, y: 34, size: 'large' },
-    { name: 'Leg slip', x: 57, y: 28, size: 'small' },
-    { name: 'Leg gully', x: 70, y: 34, size: 'small' },
-    { name: 'Short leg', x: 62, y: 38, size: 'small' },
-    { name: 'Silly point', x: 42, y: 38, size: 'small' },
+    // GULLY - INSIDE circle (x: 28%)
+    { name: 'Gully', x: 28, y: 32, size: 'large' },
 
-    // SQUARE - OFF SIDE (x: 26-30%)
-    { name: 'Point', x: 24, y: 44, size: 'large' },
-    { name: 'Backward point', x: 22, y: 36, size: 'small' },
-    { name: 'Deep point', x: 8, y: 44, size: 'small' },
+    // LEG SIDE CLOSE - INSIDE circle
+    { name: 'Leg slip', x: 56, y: 26, size: 'small' },
+    { name: 'Leg gully', x: 68, y: 32, size: 'small' },
+    { name: 'Short leg', x: 60, y: 36, size: 'small' },
+    { name: 'Silly point', x: 42, y: 36, size: 'small' },
+    { name: 'Backward square', x: 72, y: 34, size: 'small' },
 
-    // SQUARE - LEG SIDE (x: 70-78%)
-    { name: 'Square leg', x: 76, y: 44, size: 'large' },
-    { name: 'Backward square', x: 78, y: 36, size: 'small' },
-    { name: 'Deep square', x: 92, y: 44, size: 'small' },
+    // POINT - INSIDE circle (x: 28%, not 24%)
+    { name: 'Point', x: 28, y: 42, size: 'large' },
+    { name: 'Backward point', x: 26, y: 36, size: 'small' },
 
-    // COVER AREA (y: 50-58%)
-    { name: 'Cover', x: 26, y: 52, size: 'large' },
-    { name: 'Extra cover', x: 32, y: 58, size: 'small' },
-    { name: 'Deep cover', x: 12, y: 52, size: 'small' },
+    // SQUARE LEG - INSIDE circle (x: 72%, not 76%)
+    { name: 'Square leg', x: 72, y: 42, size: 'large' },
 
-    // MID-WICKET AREA (y: 50-58%)
-    { name: 'Mid-wicket', x: 74, y: 52, size: 'large' },
-    { name: 'Deep mid-wicket', x: 88, y: 52, size: 'small' },
-    { name: 'Sweeper', x: 92, y: 46, size: 'small' },
+    // DEEP POSITIONS - Outside circle (x < 20% or x > 80%)
+    { name: 'Deep point', x: 12, y: 42, size: 'small' },
+    { name: 'Deep square', x: 88, y: 42, size: 'small' },
+    { name: 'Sweeper', x: 90, y: 48, size: 'small' },
 
-    // MID-OFF / MID-ON (y: 64-72%)
-    { name: 'Mid-off', x: 38, y: 66, size: 'large' },
-    { name: 'Mid-on', x: 62, y: 66, size: 'large' },
-    { name: 'Deep mid-off', x: 28, y: 78, size: 'small' },
-    { name: 'Deep mid-on', x: 72, y: 78, size: 'small' },
+    // COVER - INSIDE circle (x: 28-35%)
+    { name: 'Cover', x: 28, y: 52, size: 'large' },
+    { name: 'Extra cover', x: 34, y: 58, size: 'small' },
+    { name: 'Deep cover', x: 14, y: 52, size: 'small' },
 
-    // BOUNDARY - LONG (y: 88-94%)
-    { name: 'Long off', x: 32, y: 90, size: 'large' },
-    { name: 'Long on', x: 68, y: 90, size: 'large' },
-    { name: 'Cow corner', x: 82, y: 84, size: 'small' },
+    // MID-WICKET - INSIDE circle (x: 65-72%)
+    { name: 'Mid-wicket', x: 72, y: 52, size: 'large' },
+    { name: 'Deep mid-wicket', x: 86, y: 52, size: 'small' },
+
+    // MID-OFF / MID-ON - INSIDE circle (x: 38-62%)
+    { name: 'Mid-off', x: 38, y: 64, size: 'large' },
+    { name: 'Mid-on', x: 62, y: 64, size: 'large' },
+    { name: 'Deep mid-off', x: 30, y: 76, size: 'small' },
+    { name: 'Deep mid-on', x: 70, y: 76, size: 'small' },
+
+    // BOUNDARY - Long (y > 85%)
+    { name: 'Long off', x: 35, y: 88, size: 'large' },
+    { name: 'Long on', x: 65, y: 88, size: 'large' },
+    { name: 'Cow corner', x: 80, y: 82, size: 'small' },
 ];
 
 interface CricketFieldProps {
