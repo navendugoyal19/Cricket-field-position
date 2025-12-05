@@ -3,158 +3,139 @@ import type { Fielder } from '../types';
 import { getFielderColor } from '../utils/fieldPositions';
 
 /**
- * Cricket Field Position Labels - Batsman-Relative Coordinates
+ * Cricket Field - Simple Direct Coordinates
  * 
- * KEY INSIGHT: All fielding positions are measured relative to the 
- * BATSMAN'S POSITION at the crease, NOT the center of the field.
+ * Layout (Y-axis):
+ * - 0% = Top of field (boundary behind WK)
+ * - 18% = Wicketkeeper position
+ * - 33% = Striker batsman (at crease)
+ * - 50% = Center of field / pitch
+ * - 67% = Non-striker (at other crease)
+ * - 78% = Bowler position
+ * - 100% = Bottom boundary
  * 
- * Batsman (striker) is at: x=50%, y=33% (at the top crease)
- * 
- * Angle reference (0° = toward bowler, measured clockwise):
- * - 0° = Straight toward bowler (Long off/Long on direction)
- * - 90° = Off-side (Point, Square cut area)
- * - 180° = Behind batsman (Slips, Third man)
- * - 270° (-90°) = Leg-side (Square leg, Fine leg)
+ * X-axis:
+ * - 0% = Left (off-side for right-hander)
+ * - 50% = Center (pitch line)
+ * - 100% = Right (leg-side for right-hander)
  */
 
-// Batsman position (striker's crease)
-const BATSMAN_X = 50;
-const BATSMAN_Y = 33;
-
-// Helper: Calculate position from batsman using angle and distance
-// 0° = DOWN (toward bowler), 90° = RIGHT (off-side), 180° = UP (behind), 270° = LEFT (leg-side)
-function fromBatsman(angleDegrees: number, distance: number): { x: number; y: number } {
-    const radians = angleDegrees * (Math.PI / 180);
-    // sin for X (0° gives 0, 90° gives 1)
-    // cos for Y (0° gives 1, 90° gives 0)
-    const x = BATSMAN_X + distance * Math.sin(radians);
-    const y = BATSMAN_Y + distance * Math.cos(radians);
-    return { x: Math.max(5, Math.min(95, x)), y: Math.max(5, Math.min(95, y)) };
-}
-
-// Position labels with CORRECT angles relative to batsman
-// Angle: 0° = toward bowler, 90° = off-side, -90° = leg-side, 180° = behind
-const POSITIONS = [
+// Simple position labels with direct x,y coordinates
+// Carefully placed based on cricket field layout
+const POSITION_LABELS = [
     // ============================================
-    // BEHIND BATSMAN (150° to 210°)
+    // TOP - BEHIND WICKET AREA (y: 5-25%)
+    // WK at ~18%, Slips beside WK
     // ============================================
-    { name: 'Long stop', angle: 180, dist: 28, size: 'small' },
 
-    // Third Man (Off-side, behind) - around 135-150°
-    { name: 'Third man', angle: 145, dist: 52, size: 'large' },
-    { name: 'Deep', angle: 155, dist: 58, size: 'small' },
-    { name: 'Short', angle: 140, dist: 38, size: 'small' },
-    { name: 'Fine', angle: 165, dist: 55, size: 'small' },
+    // Third Man - Off side, behind (top left area)
+    { name: 'Third man', x: 22, y: 12, size: 'large' },
+    { name: 'Deep', x: 15, y: 8, size: 'small' },
+    { name: 'Short', x: 28, y: 18, size: 'small' },
 
-    // Fine Leg (Leg-side, behind) - around 210-235°
-    { name: 'Fine leg', angle: 215, dist: 52, size: 'large' },
-    { name: 'Deep', angle: 205, dist: 58, size: 'small' },
-    { name: 'Short', angle: 220, dist: 38, size: 'small' },
-    { name: 'Long leg', angle: 195, dist: 55, size: 'small' },
+    // Long stop - directly behind
+    { name: 'Long stop', x: 50, y: 6, size: 'small' },
 
-    // ============================================
-    // SLIPS (Behind batsman, off-side) - 155-175°
-    // ============================================
-    { name: 'Slips', angle: 160, dist: 18, size: 'large' },
-    { name: '1', angle: 168, dist: 12, size: 'small' },
-    { name: '2', angle: 165, dist: 14, size: 'small' },
-    { name: '3', angle: 162, dist: 16, size: 'small' },
-    { name: '4', angle: 158, dist: 18, size: 'small' },
-    { name: '5', angle: 154, dist: 20, size: 'small' },
-    { name: '6', angle: 150, dist: 22, size: 'small' },
-    { name: 'Fly slip', angle: 148, dist: 30, size: 'small' },
+    // Fine Leg - Leg side, behind (top right area)
+    { name: 'Fine leg', x: 78, y: 12, size: 'large' },
+    { name: 'Deep', x: 85, y: 8, size: 'small' },
+    { name: 'Short', x: 72, y: 18, size: 'small' },
+    { name: 'Long leg', x: 60, y: 7, size: 'small' },
 
-    // Leg slip (Behind, leg-side) - around 195°
-    { name: 'Leg slip', angle: 192, dist: 12, size: 'small' },
-    { name: 'Leg gully', angle: 215, dist: 20, size: 'small' },
-    { name: 'Backward short leg', angle: 225, dist: 14, size: 'small' },
+    // Slips - Arc beside wicketkeeper (off-side)
+    { name: 'Slips', x: 38, y: 22, size: 'large' },
+    { name: '1', x: 44, y: 20, size: 'small' },
+    { name: '2', x: 42, y: 21, size: 'small' },
+    { name: '3', x: 40, y: 22, size: 'small' },
+    { name: '4', x: 38, y: 23, size: 'small' },
+    { name: '5', x: 36, y: 24, size: 'small' },
+    { name: '6', x: 34, y: 25, size: 'small' },
+    { name: 'Fly slip', x: 30, y: 18, size: 'small' },
+
+    // Leg Slip - beside WK on leg side
+    { name: 'Leg slip', x: 56, y: 20, size: 'small' },
+    { name: 'Leg gully', x: 65, y: 24, size: 'small' },
 
     // ============================================
-    // GULLY (Off-side, behind square) - around 125-140°
+    // UPPER MIDDLE - SQUARE AREA (y: 28-45%)
+    // Gully, Point area (off-side square)
+    // Square leg area (leg-side square)
     // ============================================
-    { name: 'Gully', angle: 130, dist: 25, size: 'large' },
-    { name: 'Backward', angle: 140, dist: 28, size: 'small' },
-    { name: 'Deep backward', angle: 140, dist: 48, size: 'small' },
+
+    // Gully - Off side, behind square
+    { name: 'Gully', x: 20, y: 30, size: 'large' },
+    { name: 'Backward', x: 15, y: 26, size: 'small' },
+
+    // Point - Off side, SQUARE of wicket (level with batsman)
+    { name: 'Point', x: 15, y: 38, size: 'large' },
+    { name: 'Backward', x: 12, y: 34, size: 'small' },
+    { name: 'Deep', x: 8, y: 38, size: 'small' },
+
+    // Short leg area - close to batsman, leg side
+    { name: 'Short leg', x: 62, y: 36, size: 'small' },
+    { name: 'Backward short leg', x: 68, y: 30, size: 'small' },
+
+    // Square Leg - Leg side, SQUARE of wicket
+    { name: 'Square leg', x: 85, y: 38, size: 'large' },
+    { name: 'Backward', x: 88, y: 32, size: 'small' },
+    { name: 'Deep', x: 92, y: 38, size: 'small' },
+    { name: 'Deep backward', x: 90, y: 26, size: 'small' },
 
     // ============================================
-    // POINT (Off-side, SQUARE - exactly 90°)
+    // MIDDLE - COVER / MID-WICKET AREA (y: 45-60%)
     // ============================================
-    { name: 'Point', angle: 100, dist: 30, size: 'large' },
-    { name: 'Backward', angle: 115, dist: 32, size: 'small' },
-    { name: 'Deep', angle: 100, dist: 55, size: 'small' },
-    { name: 'Cover point', angle: 80, dist: 30, size: 'small' },
-    { name: 'Deep cover point', angle: 85, dist: 55, size: 'small' },
+
+    // Silly positions (very close to batsman)
+    { name: 'Silly point', x: 40, y: 38, size: 'small' },
+    { name: 'Silly mid-off', x: 42, y: 45, size: 'small' },
+    { name: 'Silly mid-on', x: 58, y: 45, size: 'small' },
+
+    // Cover - Off side, forward of square
+    { name: 'Cover', x: 20, y: 55, size: 'large' },
+    { name: 'Extra cover', x: 28, y: 60, size: 'small' },
+    { name: 'Deep', x: 10, y: 55, size: 'small' },
+    { name: 'Cover point', x: 15, y: 48, size: 'small' },
+
+    // Mid-wicket - Leg side, forward of square
+    { name: 'Mid-wicket', x: 80, y: 55, size: 'large' },
+    { name: 'Forward', x: 75, y: 60, size: 'small' },
+    { name: 'Deep', x: 90, y: 55, size: 'small' },
+    { name: 'Forward', x: 82, y: 48, size: 'small' },
+    { name: 'Deep sweeper', x: 92, y: 52, size: 'small' },
 
     // ============================================
-    // SILLY/SHORT (Very close to batsman)
+    // LOWER MIDDLE - MID-OFF / MID-ON AREA (y: 65-80%)
     // ============================================
-    { name: 'Silly point', angle: 95, dist: 8, size: 'small' },
-    { name: 'Silly mid-off', angle: 25, dist: 10, size: 'small' },
-    { name: 'Silly mid-on', angle: 335, dist: 10, size: 'small' },
-    { name: 'Short leg', angle: 265, dist: 8, size: 'small' },
-    { name: 'Short leg (Bat pad)', angle: 250, dist: 10, size: 'small' },
+
+    // Mid-off - Straight, off side
+    { name: 'Mid-off', x: 38, y: 72, size: 'large' },
+    { name: 'Short', x: 42, y: 58, size: 'small' },
+    { name: 'Deep', x: 32, y: 82, size: 'small' },
+    { name: 'Deep extra cover', x: 15, y: 78, size: 'small' },
+
+    // Mid-on - Straight, leg side
+    { name: 'Mid-on', x: 62, y: 72, size: 'large' },
+    { name: 'Short', x: 58, y: 58, size: 'small' },
+    { name: 'Deep', x: 68, y: 82, size: 'small' },
+    { name: 'Deep forward', x: 85, y: 78, size: 'small' },
 
     // ============================================
-    // COVER (Off-side, forward - around 45-60°)
+    // BOTTOM - BOUNDARY AREA (y: 85-95%)
     // ============================================
-    { name: 'Cover', angle: 55, dist: 35, size: 'large' },
-    { name: 'Extra cover', angle: 40, dist: 35, size: 'small' },
-    { name: 'Deep', angle: 55, dist: 55, size: 'small' },
 
-    // ============================================
-    // MID-OFF (Off-side, straight - around 15-25°)
-    // ============================================
-    { name: 'Mid-off', angle: 20, dist: 40, size: 'large' },
-    { name: 'Short', angle: 20, dist: 25, size: 'small' },
-    { name: 'Deep', angle: 15, dist: 52, size: 'small' },
-    { name: 'Deep extra cover', angle: 45, dist: 58, size: 'small' },
+    // Long off - Off side boundary
+    { name: 'Long off', x: 35, y: 92, size: 'large' },
+    { name: 'Wide', x: 20, y: 90, size: 'small' },
+    { name: 'Straight', x: 45, y: 94, size: 'small' },
 
-    // ============================================
-    // LONG OFF (Off-side boundary)
-    // ============================================
-    { name: 'Long off', angle: 12, dist: 60, size: 'large' },
-    { name: 'Wide', angle: 35, dist: 58, size: 'small' },
-    { name: 'Straight', angle: 5, dist: 62, size: 'small' },
-    { name: 'Straight hit', angle: 0, dist: 63, size: 'small' },
+    // Straight hit - directly behind bowler
+    { name: 'Straight hit', x: 50, y: 95, size: 'small' },
 
-    // ============================================
-    // MID-ON (Leg-side, straight - around 335-345°)
-    // ============================================
-    { name: 'Mid-on', angle: 340, dist: 40, size: 'large' },
-    { name: 'Short', angle: 340, dist: 25, size: 'small' },
-    { name: 'Deep', angle: 345, dist: 52, size: 'small' },
-
-    // ============================================
-    // LONG ON (Leg-side boundary)
-    // ============================================
-    { name: 'Long on', angle: 348, dist: 60, size: 'large' },
-    { name: 'Wide', angle: 325, dist: 58, size: 'small' },
-    { name: 'Straight', angle: 355, dist: 62, size: 'small' },
-
-    // ============================================
-    // MID-WICKET (Leg-side, forward - around 300-320°)
-    // ============================================
-    { name: 'Mid-wicket', angle: 305, dist: 35, size: 'large' },
-    { name: 'Forward', angle: 320, dist: 35, size: 'small' },
-    { name: 'Deep', angle: 305, dist: 55, size: 'small' },
-    { name: 'Deep forward', angle: 315, dist: 58, size: 'small' },
-
-    // ============================================
-    // SQUARE LEG (Leg-side, SQUARE - exactly 270°)
-    // ============================================
-    { name: 'Square leg', angle: 260, dist: 30, size: 'large' },
-    { name: 'Backward', angle: 245, dist: 32, size: 'small' },
-    { name: 'Forward', angle: 280, dist: 30, size: 'small' },
-    { name: 'Deep', angle: 260, dist: 55, size: 'small' },
-    { name: 'Deep sweeper', angle: 280, dist: 55, size: 'small' },
-    { name: 'Deep backward', angle: 235, dist: 50, size: 'small' },
+    // Long on - Leg side boundary
+    { name: 'Long on', x: 65, y: 92, size: 'large' },
+    { name: 'Wide', x: 80, y: 90, size: 'small' },
+    { name: 'Straight', x: 55, y: 94, size: 'small' },
 ];
-
-// Convert to x,y coordinates
-const POSITION_LABELS = POSITIONS.map(pos => {
-    const { x, y } = fromBatsman(pos.angle, pos.dist);
-    return { name: pos.name, x, y, size: pos.size };
-});
 
 interface CricketFieldProps {
     fielders: Fielder[];
@@ -187,9 +168,7 @@ export function CricketField({
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                onSelect(null);
-            }
+            if (e.key === 'Escape') onSelect(null);
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
@@ -235,7 +214,6 @@ export function CricketField({
                 <div className="crease popping-crease-bottom" />
                 <div className="crease return-crease-bottom-left" />
                 <div className="crease return-crease-bottom-right" />
-
                 <div className="stumps-container stumps-top">
                     <div className="stump" /><div className="stump" /><div className="stump" />
                     <div className="bails" />
@@ -247,20 +225,12 @@ export function CricketField({
             </div>
 
             {/* Batsmen */}
-            <div className="batsman-marker batsman-striker">
-                <div className="batsman-icon">S</div>
-            </div>
-            <div className="batsman-marker batsman-nonstriker">
-                <div className="batsman-icon">NS</div>
-            </div>
+            <div className="batsman-marker batsman-striker"><div className="batsman-icon">S</div></div>
+            <div className="batsman-marker batsman-nonstriker"><div className="batsman-icon">NS</div></div>
 
             {/* Umpires */}
-            <div className="umpire-marker square-leg-umpire">
-                <div className="umpire-icon">Sq L U</div>
-            </div>
-            <div className="umpire-marker main-umpire">
-                <div className="umpire-icon">U</div>
-            </div>
+            <div className="umpire-marker square-leg-umpire"><div className="umpire-icon">Sq L U</div></div>
+            <div className="umpire-marker main-umpire"><div className="umpire-icon">U</div></div>
 
             {/* Side labels */}
             <div className={`side-label offside ${isLeftHanded ? 'flipped' : ''}`}>Off side</div>
