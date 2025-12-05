@@ -9,15 +9,15 @@ import type { Position, Fielder, FieldPreset, FielderCategory } from '../types';
 
 export const ALL_POSITIONS: Position[] = [
   // Keeper & Bowler (fixed positions)
-  { id: 'wk', name: 'Wicketkeeper', label: 'WK', x: 50, y: 18, category: 'keeper' },
+  // WK at y:28% to be inside 30-yard circle (circle edge at y:22%)
+  { id: 'wk', name: 'Wicketkeeper', label: 'WK', x: 50, y: 28, category: 'keeper' },
   { id: 'bowler', name: 'Bowler', label: 'Bowler', x: 50, y: 75, category: 'bowler' },
 
-  // Slip Cordon (off side, behind/beside batsman at striker's end)
-  // Slips form an arc behind the batsman on off-side
-  { id: 'slip1', name: '1st Slip', label: '1st Slip', x: 40, y: 20, category: 'slip' },
-  { id: 'slip2', name: '2nd Slip', label: '2nd Slip', x: 34, y: 18, category: 'slip' },
-  { id: 'slip3', name: '3rd Slip', label: '3rd Slip', x: 28, y: 16, category: 'slip' },
-  { id: 'slip4', name: '4th Slip', label: '4th Slip', x: 22, y: 14, category: 'slip' },
+  // Slip Cordon (off side, behind/beside batsman) - inside 30-yard circle
+  { id: 'slip1', name: '1st Slip', label: '1st Slip', x: 42, y: 28, category: 'slip' },
+  { id: 'slip2', name: '2nd Slip', label: '2nd Slip', x: 38, y: 27, category: 'slip' },
+  { id: 'slip3', name: '3rd Slip', label: '3rd Slip', x: 34, y: 26, category: 'slip' },
+  { id: 'slip4', name: '4th Slip', label: '4th Slip', x: 30, y: 25, category: 'slip' },
 
   // Close Catchers (very close to batsman)
   { id: 'gully', name: 'Gully', label: 'Gully', x: 18, y: 28, category: 'close' },
