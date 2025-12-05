@@ -483,12 +483,13 @@
 }
 
 /* Bowling Crease (The line stumps are on) */
+/* Should be 8ft 8in wide = same as return crease span */
 .bowling-crease-top {
     left: 50%;
     top: 10%;
     transform: translateX(-50%);
-    width: 266%;
-    /* 8ft 8in wide (same as return creases) */
+    width: 180%;
+    /* Reduced from 266% */
     height: 2px;
 }
 
@@ -496,27 +497,27 @@
     left: 50%;
     bottom: 10%;
     transform: translateX(-50%);
-    width: 266%;
+    width: 180%;
     height: 2px;
 }
 
 /* Popping Crease (4ft in front of bowling crease) */
+/* Extends slightly beyond return creases */
 .popping-crease-top {
     left: 50%;
     top: 16%;
-    /* 4ft gap from 10% */
     transform: translateX(-50%);
-    width: 400%;
-    /* Extends beyond return creases */
-    height: 3px;
+    width: 220%;
+    /* Reduced from 400% */
+    height: 2px;
 }
 
 .popping-crease-bottom {
     left: 50%;
     bottom: 16%;
     transform: translateX(-50%);
-    width: 400%;
-    height: 3px;
+    width: 220%;
+    height: 2px;
 }
 
 /* Return Creases (Side limits) */
@@ -525,66 +526,59 @@
 .return-crease-bottom-left,
 .return-crease-bottom-right {
     width: 2px;
-    height: 12%;
-    /* Extends back from popping crease */
+    height: 8%;
     background: rgba(255, 255, 255, 0.9);
 }
 
-/* 4ft 4in from center */
+/* Return creases at ends of bowling crease */
 .return-crease-top-left {
-    left: -83%;
-    top: 8%;
-    height: 10%;
+    left: -40%;
+    top: 10%;
 }
 
 .return-crease-top-right {
-    right: -83%;
-    top: 8%;
-    height: 10%;
+    right: -40%;
+    top: 10%;
 }
 
 .return-crease-bottom-left {
-    left: -83%;
-    bottom: 8%;
-    height: 10%;
+    left: -40%;
+    bottom: 10%;
 }
 
 .return-crease-bottom-right {
-    right: -83%;
-    bottom: 8%;
-    height: 10%;
+    right: -40%;
+    bottom: 10%;
 }
 
 /* Wide Lines (Inside Return Crease) */
-/* 17 inches inside return crease */
 .wide-line-top-left,
 .wide-line-top-right,
 .wide-line-bottom-left,
 .wide-line-bottom-right {
     width: 1px;
-    height: 8%;
-    /* From popping crease back */
+    height: 6%;
     background: rgba(255, 255, 255, 0.5);
-    border-left: 1px dashed rgba(255, 255, 255, 0.5);
 }
 
+/* Wide lines inside return creases */
 .wide-line-top-left {
-    left: -55%;
+    left: -25%;
     top: 10%;
 }
 
 .wide-line-top-right {
-    right: -55%;
+    right: -25%;
     top: 10%;
 }
 
 .wide-line-bottom-left {
-    left: -55%;
+    left: -25%;
     bottom: 10%;
 }
 
 .wide-line-bottom-right {
-    right: -55%;
+    right: -25%;
     bottom: 10%;
 }
 
