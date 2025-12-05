@@ -42,19 +42,19 @@ const POSITION_LABELS = [
     { name: 'Short', x: 72, y: 18, size: 'small' },
     { name: 'Long leg', x: 60, y: 7, size: 'small' },
 
-    // Slips - Arc beside wicketkeeper (off-side)
-    { name: 'Slips', x: 38, y: 22, size: 'large' },
-    { name: '1', x: 44, y: 20, size: 'small' },
-    { name: '2', x: 42, y: 21, size: 'small' },
-    { name: '3', x: 40, y: 22, size: 'small' },
-    { name: '4', x: 38, y: 23, size: 'small' },
-    { name: '5', x: 36, y: 24, size: 'small' },
-    { name: '6', x: 34, y: 25, size: 'small' },
-    { name: 'Fly slip', x: 30, y: 18, size: 'small' },
+    // Slips - Arc beside wicketkeeper (off-side) - INSIDE 30-yard circle
+    { name: 'Slips', x: 40, y: 28, size: 'large' },
+    { name: '1', x: 46, y: 26, size: 'small' },
+    { name: '2', x: 44, y: 27, size: 'small' },
+    { name: '3', x: 42, y: 28, size: 'small' },
+    { name: '4', x: 40, y: 29, size: 'small' },
+    { name: '5', x: 38, y: 30, size: 'small' },
+    { name: '6', x: 36, y: 31, size: 'small' },
+    { name: 'Fly slip', x: 32, y: 24, size: 'small' },
 
-    // Leg Slip - beside WK on leg side
-    { name: 'Leg slip', x: 56, y: 20, size: 'small' },
-    { name: 'Leg gully', x: 65, y: 24, size: 'small' },
+    // Leg Slip - beside WK on leg side - INSIDE 30-yard circle
+    { name: 'Leg slip', x: 56, y: 26, size: 'small' },
+    { name: 'Leg gully', x: 65, y: 28, size: 'small' },
 
     // ============================================
     // UPPER MIDDLE - SQUARE AREA (y: 28-45%)
