@@ -24,27 +24,27 @@ export const ALL_POSITIONS: Position[] = [
   { id: 'slip4', name: '4th Slip', label: '4th Slip', x: 32, y: 27, category: 'slip' },
 
   // Close Catchers - ALL INSIDE circle
-  { id: 'gully', name: 'Gully', label: 'Gully', x: 25, y: 32, category: 'close' },
+  { id: 'gully', name: 'Gully', label: 'Gully', x: 28, y: 34, category: 'close' },
   { id: 'leg_slip', name: 'Leg Slip', label: 'Leg Slip', x: 56, y: 30, category: 'close' },
-  { id: 'leg_gully', name: 'Leg Gully', label: 'Leg Gully', x: 70, y: 32, category: 'close' },
+  { id: 'leg_gully', name: 'Leg Gully', label: 'Leg Gully', x: 68, y: 34, category: 'close' },
   { id: 'silly_point', name: 'Silly Point', label: 'Silly Pt', x: 40, y: 38, category: 'close' },
   { id: 'silly_mid_off', name: 'Silly Mid Off', label: 'Silly MO', x: 44, y: 45, category: 'close' },
   { id: 'silly_mid_on', name: 'Silly Mid On', label: 'Silly MOn', x: 56, y: 45, category: 'close' },
   { id: 'short_leg', name: 'Short Leg', label: 'Short Leg', x: 60, y: 38, category: 'close' },
 
-  // Ring Field - INSIDE 30-yard circle (x: 22-78%, y: 22-78%)
-  // Off Side
-  { id: 'point', name: 'Point', label: 'Point', x: 24, y: 45, category: 'ring' },
-  { id: 'backward_point', name: 'Backward Point', label: 'Bwd Pt', x: 24, y: 38, category: 'ring' },
-  { id: 'cover', name: 'Cover', label: 'Cover', x: 28, y: 55, category: 'ring' },
-  { id: 'extra_cover', name: 'Extra Cover', label: 'Ex Cover', x: 34, y: 62, category: 'ring' },
-  { id: 'mid_off', name: 'Mid Off', label: 'Mid Off', x: 40, y: 68, category: 'ring' },
+  // Ring Field - INSIDE 30-yard circle
+  // Off Side - moved further inside (x: 28-40%)
+  { id: 'point', name: 'Point', label: 'Point', x: 28, y: 45, category: 'ring' },
+  { id: 'backward_point', name: 'Backward Point', label: 'Bwd Pt', x: 28, y: 38, category: 'ring' },
+  { id: 'cover', name: 'Cover', label: 'Cover', x: 30, y: 55, category: 'ring' },
+  { id: 'extra_cover', name: 'Extra Cover', label: 'Ex Cover', x: 36, y: 62, category: 'ring' },
+  { id: 'mid_off', name: 'Mid Off', label: 'Mid Off', x: 42, y: 68, category: 'ring' },
 
-  // Leg Side
-  { id: 'mid_on', name: 'Mid On', label: 'Mid On', x: 60, y: 68, category: 'ring' },
-  { id: 'mid_wicket', name: 'Mid Wicket', label: 'Mid Wkt', x: 66, y: 62, category: 'ring' },
-  { id: 'square_leg', name: 'Square Leg', label: 'Sq Leg', x: 76, y: 45, category: 'ring' },
-  { id: 'backward_square', name: 'Backward Square Leg', label: 'Bwd Sq', x: 76, y: 38, category: 'ring' },
+  // Leg Side - moved further inside (x: 60-72%)
+  { id: 'mid_on', name: 'Mid On', label: 'Mid On', x: 58, y: 68, category: 'ring' },
+  { id: 'mid_wicket', name: 'Mid Wicket', label: 'Mid Wkt', x: 64, y: 62, category: 'ring' },
+  { id: 'square_leg', name: 'Square Leg', label: 'Sq Leg', x: 72, y: 45, category: 'ring' },
+  { id: 'backward_square', name: 'Backward Square Leg', label: 'Bwd Sq', x: 72, y: 38, category: 'ring' },
 
   // Fine positions (behind batsman) - INSIDE circle
   { id: 'fine_leg', name: 'Fine Leg', label: 'Fine Leg', x: 72, y: 28, category: 'ring' },
