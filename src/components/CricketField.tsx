@@ -42,53 +42,59 @@ const POSITION_LABELS = [
     { name: 'Short', x: 72, y: 18, size: 'small' },
     { name: 'Long leg', x: 60, y: 7, size: 'small' },
 
-    // Slips - Arc beside wicketkeeper (off-side) - INSIDE 30-yard circle
-    { name: 'Slips', x: 40, y: 28, size: 'large' },
-    { name: '1', x: 46, y: 26, size: 'small' },
-    { name: '2', x: 44, y: 27, size: 'small' },
-    { name: '3', x: 42, y: 28, size: 'small' },
-    { name: '4', x: 40, y: 29, size: 'small' },
-    { name: '5', x: 38, y: 30, size: 'small' },
-    { name: '6', x: 36, y: 31, size: 'small' },
-    { name: 'Fly slip', x: 32, y: 24, size: 'small' },
-
-    // Leg Slip - beside WK on leg side - INSIDE 30-yard circle
-    { name: 'Leg slip', x: 56, y: 26, size: 'small' },
-    { name: 'Leg gully', x: 65, y: 28, size: 'small' },
-
     // ============================================
-    // UPPER MIDDLE - SQUARE AREA (y: 28-45%)
-    // Gully, Point area (off-side square)
-    // Square leg area (leg-side square)
+    // CLOSE CATCHERS - INSIDE 30-YARD CIRCLE
+    // These positions are ALWAYS inside the circle
     // ============================================
 
-    // Gully - Off side, behind square
-    { name: 'Gully', x: 20, y: 30, size: 'large' },
-    { name: 'Backward', x: 15, y: 26, size: 'small' },
+    // Slips - Arc beside wicketkeeper (off-side) - y: 28-35%
+    { name: 'Slips', x: 40, y: 30, size: 'large' },
+    { name: '1', x: 46, y: 28, size: 'small' },
+    { name: '2', x: 44, y: 29, size: 'small' },
+    { name: '3', x: 42, y: 30, size: 'small' },
+    { name: '4', x: 40, y: 31, size: 'small' },
+    { name: '5', x: 38, y: 32, size: 'small' },
+    { name: '6', x: 36, y: 33, size: 'small' },
+    { name: 'Fly slip', x: 30, y: 26, size: 'small' },
 
-    // Point - Off side, SQUARE of wicket (level with batsman)
-    { name: 'Point', x: 15, y: 38, size: 'large' },
-    { name: 'Backward', x: 12, y: 34, size: 'small' },
-    { name: 'Deep', x: 8, y: 38, size: 'small' },
+    // Leg Slip - beside WK on leg side - y: 28-32%
+    { name: 'Leg slip', x: 55, y: 28, size: 'small' },
+    { name: 'Leg gully', x: 62, y: 32, size: 'small' },
+    { name: 'Backward short leg', x: 60, y: 34, size: 'small' },
+
+    // Gully - Off side, behind square - INSIDE circle (y: 32-36%)
+    { name: 'Gully', x: 25, y: 34, size: 'large' },
+    { name: 'Backward', x: 20, y: 30, size: 'small' },
+    { name: 'Deep backward', x: 12, y: 22, size: 'small' },
+
+    // ============================================
+    // SQUARE POSITIONS (y: 36-45%)
+    // Point, Square Leg, Short leg
+    // ============================================
+
+    // Point - Off side, SQUARE of wicket (y: 38-42%)
+    { name: 'Point', x: 18, y: 40, size: 'large' },
+    { name: 'Backward', x: 15, y: 36, size: 'small' },
+    { name: 'Deep', x: 8, y: 40, size: 'small' },
 
     // Short leg area - close to batsman, leg side
-    { name: 'Short leg', x: 62, y: 36, size: 'small' },
-    { name: 'Backward short leg', x: 68, y: 30, size: 'small' },
+    { name: 'Short leg', x: 58, y: 38, size: 'small' },
+    { name: 'Forward short leg', x: 56, y: 42, size: 'small' },
 
-    // Square Leg - Leg side, SQUARE of wicket
-    { name: 'Square leg', x: 85, y: 38, size: 'large' },
-    { name: 'Backward', x: 88, y: 32, size: 'small' },
-    { name: 'Deep', x: 92, y: 38, size: 'small' },
-    { name: 'Deep backward', x: 90, y: 26, size: 'small' },
+    // Silly positions (very close to batsman) - y: 38-42%
+    { name: 'Silly point', x: 42, y: 38, size: 'small' },
+    { name: 'Silly mid-off', x: 44, y: 44, size: 'small' },
+    { name: 'Silly mid-on', x: 56, y: 44, size: 'small' },
+
+    // Square Leg - Leg side, SQUARE of wicket (y: 38-42%)
+    { name: 'Square leg', x: 82, y: 40, size: 'large' },
+    { name: 'Backward', x: 85, y: 34, size: 'small' },
+    { name: 'Deep', x: 92, y: 40, size: 'small' },
+    { name: 'Deep backward', x: 88, y: 28, size: 'small' },
 
     // ============================================
     // MIDDLE - COVER / MID-WICKET AREA (y: 45-60%)
     // ============================================
-
-    // Silly positions (very close to batsman)
-    { name: 'Silly point', x: 40, y: 38, size: 'small' },
-    { name: 'Silly mid-off', x: 42, y: 45, size: 'small' },
-    { name: 'Silly mid-on', x: 58, y: 45, size: 'small' },
 
     // Cover - Off side, forward of square
     { name: 'Cover', x: 20, y: 55, size: 'large' },
