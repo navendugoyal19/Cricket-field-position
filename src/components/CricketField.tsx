@@ -22,12 +22,13 @@ const BATSMAN_X = 50;
 const BATSMAN_Y = 33;
 
 // Helper: Calculate position from batsman using angle and distance
+// 0° = DOWN (toward bowler), 90° = RIGHT (off-side), 180° = UP (behind), 270° = LEFT (leg-side)
 function fromBatsman(angleDegrees: number, distance: number): { x: number; y: number } {
-    // Convert angle: 0° = down (toward bowler), clockwise positive
-    // So 90° = right (off-side for right-hander), -90° = left (leg-side)
-    const radians = (angleDegrees - 90) * (Math.PI / 180);
-    const x = BATSMAN_X + distance * Math.cos(radians);
-    const y = BATSMAN_Y + distance * Math.sin(radians);
+    const radians = angleDegrees * (Math.PI / 180);
+    // sin for X (0° gives 0, 90° gives 1)
+    // cos for Y (0° gives 1, 90° gives 0)
+    const x = BATSMAN_X + distance * Math.sin(radians);
+    const y = BATSMAN_Y + distance * Math.cos(radians);
     return { x: Math.max(5, Math.min(95, x)), y: Math.max(5, Math.min(95, y)) };
 }
 
