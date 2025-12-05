@@ -280,7 +280,6 @@ export function CricketField({
                         <div className="fielder-dot" style={{ background: colors.bg, borderColor: colors.border }}>
                             {displayNum}
                         </div>
-                        <div className="fielder-name-label">{fielder.name}</div>
                     </div>
                 );
             })}

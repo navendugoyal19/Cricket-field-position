@@ -646,18 +646,19 @@
     z-index: 20;
 }
 
-/* Striker - At popping crease (stance) */
+/* Striker - At striker's end popping crease */
+/* Pitch is 45% of field, centered (27.5% to 72.5%) */
+/* Top popping crease is 16% into pitch = 27.5% + (16% × 45%) ≈ 34.7% */
 .batsman-striker {
     left: 50%;
-    top: 16%;
-    /* At popping crease line */
+    top: 35%;
 }
 
-/* Non-striker - At bowling crease */
+/* Non-striker - At bowler's end popping crease */
+/* Bottom popping crease is 84% into pitch = 27.5% + (84% × 45%) ≈ 65.3% */
 .batsman-nonstriker {
     left: 50%;
-    top: 90%;
-    /* At bowling crease line */
+    top: 65%;
     transform: translate(-50%, -50%) rotate(180deg);
 }
 
