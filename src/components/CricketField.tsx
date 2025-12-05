@@ -24,123 +24,80 @@ import { getFielderColor } from '../utils/fieldPositions';
 // Carefully placed based on cricket field layout
 const POSITION_LABELS = [
     // ============================================
-    // TOP - BEHIND WICKET AREA (y: 5-25%)
-    // WK at ~18%, Slips beside WK
+    // BATSMAN REFERENCE: Striker at y: 35%
+    // Behind batsman: y < 35%
+    // Level/Square: y ≈ 35-42%
+    // In front: y > 42%
     // ============================================
 
-    // Third Man - Off side, behind (top left area)
+    // BOUNDARY - BEHIND BATSMAN (y: 5-20%)
     { name: 'Third man', x: 22, y: 12, size: 'large' },
-    { name: 'Deep', x: 15, y: 8, size: 'small' },
-    { name: 'Short', x: 28, y: 18, size: 'small' },
-
-    // Long stop - directly behind
+    { name: 'Deep third man', x: 15, y: 8, size: 'small' },
+    { name: 'Fine leg', x: 78, y: 12, size: 'large' },
+    { name: 'Deep fine leg', x: 85, y: 8, size: 'small' },
+    { name: 'Long leg', x: 68, y: 10, size: 'small' },
     { name: 'Long stop', x: 50, y: 6, size: 'small' },
 
-    // Fine Leg - Leg side, behind (top right area)
-    { name: 'Fine leg', x: 78, y: 12, size: 'large' },
-    { name: 'Deep', x: 85, y: 8, size: 'small' },
-    { name: 'Short', x: 72, y: 18, size: 'small' },
-    { name: 'Long leg', x: 60, y: 7, size: 'small' },
-
-    // ============================================
-    // CLOSE CATCHERS - INSIDE 30-YARD CIRCLE
-    // These positions are ALWAYS inside the circle
-    // ============================================
-
-    // Slips - Arc beside wicketkeeper (off-side) - y: 28-35%
+    // CLOSE CATCHERS - BEHIND BATSMAN (y: 26-34%)
+    // WK at ~30%, Slips arc behind, Gully behind square
     { name: 'Slips', x: 40, y: 30, size: 'large' },
-    { name: '1', x: 46, y: 28, size: 'small' },
-    { name: '2', x: 44, y: 29, size: 'small' },
-    { name: '3', x: 42, y: 30, size: 'small' },
-    { name: '4', x: 40, y: 31, size: 'small' },
-    { name: '5', x: 38, y: 32, size: 'small' },
-    { name: '6', x: 36, y: 33, size: 'small' },
-    { name: 'Fly slip', x: 30, y: 26, size: 'small' },
+    { name: '1st', x: 46, y: 29, size: 'small' },
+    { name: '2nd', x: 44, y: 30, size: 'small' },
+    { name: '3rd', x: 42, y: 31, size: 'small' },
+    { name: '4th', x: 40, y: 32, size: 'small' },
+    { name: '5th', x: 38, y: 33, size: 'small' },
+    { name: 'Fly slip', x: 32, y: 26, size: 'small' },
+    { name: 'Gully', x: 26, y: 33, size: 'large' },
+    { name: 'Backward gully', x: 22, y: 28, size: 'small' },
+    { name: 'Leg slip', x: 54, y: 30, size: 'small' },
+    { name: 'Leg gully', x: 60, y: 33, size: 'small' },
+    { name: 'Backward short leg', x: 58, y: 32, size: 'small' },
 
-    // Leg Slip - beside WK on leg side - y: 28-32%
-    { name: 'Leg slip', x: 55, y: 28, size: 'small' },
-    { name: 'Leg gully', x: 62, y: 32, size: 'small' },
-    { name: 'Backward short leg', x: 60, y: 34, size: 'small' },
-
-    // Gully - Off side, behind square - INSIDE circle (y: 32-36%)
-    { name: 'Gully', x: 25, y: 34, size: 'large' },
-    { name: 'Backward', x: 20, y: 30, size: 'small' },
-    { name: 'Deep backward', x: 12, y: 22, size: 'small' },
-
-    // ============================================
-    // SQUARE POSITIONS (y: 36-45%)
-    // Point, Square Leg, Short leg
-    // ============================================
-
-    // Point - Off side, SQUARE of wicket (y: 38-42%)
-    { name: 'Point', x: 18, y: 40, size: 'large' },
-    { name: 'Backward', x: 15, y: 36, size: 'small' },
-    { name: 'Deep', x: 8, y: 40, size: 'small' },
-
-    // Short leg area - close to batsman, leg side
-    { name: 'Short leg', x: 58, y: 38, size: 'small' },
+    // SQUARE POSITIONS - LEVEL WITH BATSMAN (y: 35-42%)
+    // Point & Square leg at square of wicket
+    { name: 'Point', x: 18, y: 38, size: 'large' },
+    { name: 'Backward point', x: 15, y: 35, size: 'small' },
+    { name: 'Deep point', x: 8, y: 38, size: 'small' },
+    { name: 'Square leg', x: 82, y: 38, size: 'large' },
+    { name: 'Backward square', x: 85, y: 35, size: 'small' },
+    { name: 'Deep square', x: 92, y: 38, size: 'small' },
+    { name: 'Short leg', x: 56, y: 37, size: 'small' },
+    { name: 'Silly point', x: 44, y: 36, size: 'small' },
+    { name: 'Silly mid-off', x: 46, y: 40, size: 'small' },
+    { name: 'Silly mid-on', x: 54, y: 40, size: 'small' },
     { name: 'Forward short leg', x: 56, y: 42, size: 'small' },
 
-    // Silly positions (very close to batsman) - y: 38-42%
-    { name: 'Silly point', x: 42, y: 38, size: 'small' },
-    { name: 'Silly mid-off', x: 44, y: 44, size: 'small' },
-    { name: 'Silly mid-on', x: 56, y: 44, size: 'small' },
+    // FORWARD - IN FRONT OF BATSMAN (y: 45-58%)
+    // Cover, Cover Point, Mid-wicket
+    { name: 'Cover point', x: 18, y: 45, size: 'small' },
+    { name: 'Cover', x: 22, y: 52, size: 'large' },
+    { name: 'Extra cover', x: 28, y: 55, size: 'small' },
+    { name: 'Deep cover', x: 12, y: 52, size: 'small' },
+    { name: 'Mid-wicket', x: 78, y: 52, size: 'large' },
+    { name: 'Forward mid-wicket', x: 75, y: 55, size: 'small' },
+    { name: 'Deep mid-wicket', x: 88, y: 52, size: 'small' },
+    { name: 'Deep sweeper', x: 92, y: 48, size: 'small' },
 
-    // Square Leg - Leg side, SQUARE of wicket (y: 38-42%)
-    { name: 'Square leg', x: 82, y: 40, size: 'large' },
-    { name: 'Backward', x: 85, y: 34, size: 'small' },
-    { name: 'Deep', x: 92, y: 40, size: 'small' },
-    { name: 'Deep backward', x: 88, y: 28, size: 'small' },
+    // STRAIGHT - IN FRONT OF BATSMAN (y: 60-75%)
+    // Mid-off, Mid-on (closer to bowler)
+    { name: 'Mid-off', x: 40, y: 65, size: 'large' },
+    { name: 'Short mid-off', x: 44, y: 55, size: 'small' },
+    { name: 'Deep mid-off', x: 35, y: 80, size: 'small' },
+    { name: 'Deep extra cover', x: 18, y: 75, size: 'small' },
+    { name: 'Mid-on', x: 60, y: 65, size: 'large' },
+    { name: 'Short mid-on', x: 56, y: 55, size: 'small' },
+    { name: 'Deep mid-on', x: 65, y: 80, size: 'small' },
+    { name: 'Deep mid-wicket', x: 82, y: 75, size: 'small' },
 
-    // ============================================
-    // MIDDLE - COVER / MID-WICKET AREA (y: 45-60%)
-    // ============================================
-
-    // Cover - Off side, forward of square
-    { name: 'Cover', x: 20, y: 55, size: 'large' },
-    { name: 'Extra cover', x: 28, y: 60, size: 'small' },
-    { name: 'Deep', x: 10, y: 55, size: 'small' },
-    { name: 'Cover point', x: 15, y: 48, size: 'small' },
-
-    // Mid-wicket - Leg side, forward of square
-    { name: 'Mid-wicket', x: 80, y: 55, size: 'large' },
-    { name: 'Forward', x: 75, y: 60, size: 'small' },
-    { name: 'Deep', x: 90, y: 55, size: 'small' },
-    { name: 'Forward', x: 82, y: 48, size: 'small' },
-    { name: 'Deep sweeper', x: 92, y: 52, size: 'small' },
-
-    // ============================================
-    // LOWER MIDDLE - MID-OFF / MID-ON AREA (y: 65-80%)
-    // ============================================
-
-    // Mid-off - Straight, off side
-    { name: 'Mid-off', x: 38, y: 72, size: 'large' },
-    { name: 'Short', x: 42, y: 58, size: 'small' },
-    { name: 'Deep', x: 32, y: 82, size: 'small' },
-    { name: 'Deep extra cover', x: 15, y: 78, size: 'small' },
-
-    // Mid-on - Straight, leg side
-    { name: 'Mid-on', x: 62, y: 72, size: 'large' },
-    { name: 'Short', x: 58, y: 58, size: 'small' },
-    { name: 'Deep', x: 68, y: 82, size: 'small' },
-    { name: 'Deep forward', x: 85, y: 78, size: 'small' },
-
-    // ============================================
-    // BOTTOM - BOUNDARY AREA (y: 85-95%)
-    // ============================================
-
-    // Long off - Off side boundary
-    { name: 'Long off', x: 35, y: 92, size: 'large' },
-    { name: 'Wide', x: 20, y: 90, size: 'small' },
-    { name: 'Straight', x: 45, y: 94, size: 'small' },
-
-    // Straight hit - directly behind bowler
+    // BOUNDARY - IN FRONT OF BATSMAN (y: 88-95%)
+    // Long off, Long on, straight
+    { name: 'Long off', x: 38, y: 92, size: 'large' },
+    { name: 'Wide long off', x: 22, y: 90, size: 'small' },
+    { name: 'Straight long off', x: 45, y: 94, size: 'small' },
+    { name: 'Long on', x: 62, y: 92, size: 'large' },
+    { name: 'Wide long on', x: 78, y: 90, size: 'small' },
+    { name: 'Straight long on', x: 55, y: 94, size: 'small' },
     { name: 'Straight hit', x: 50, y: 95, size: 'small' },
-
-    // Long on - Leg side boundary
-    { name: 'Long on', x: 65, y: 92, size: 'large' },
-    { name: 'Wide', x: 80, y: 90, size: 'small' },
-    { name: 'Straight', x: 55, y: 94, size: 'small' },
 ];
 
 interface CricketFieldProps {
