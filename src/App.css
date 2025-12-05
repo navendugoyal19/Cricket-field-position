@@ -464,99 +464,43 @@
     z-index: 5;
 }
 
-/* Creases */
+/* Creases - Enhanced Visibility */
 .crease {
     position: absolute;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
 .popping-crease-top {
     left: 50%;
     top: 12%;
     transform: translateX(-50%);
-    width: 150%;
-    height: 2px;
+    width: 200%;
+    /* Wider to show full crease */
+    height: 3px;
+    /* Thicker */
 }
 
 .popping-crease-bottom {
     left: 50%;
     bottom: 12%;
     transform: translateX(-50%);
-    width: 150%;
-    height: 2px;
+    width: 200%;
+    height: 3px;
 }
 
 .return-crease-top-left,
 .return-crease-top-right,
 .return-crease-bottom-left,
 .return-crease-bottom-right {
-    width: 2px;
-    height: 8%;
-}
-
-.return-crease-top-left {
-    left: -25%;
-    top: 12%;
-}
-
-.return-crease-top-right {
-    right: -25%;
-    top: 12%;
-}
-
-.return-crease-bottom-left {
-    left: -25%;
-    bottom: 12%;
-}
-
-.return-crease-bottom-right {
-    right: -25%;
-    bottom: 12%;
-}
-
-/* Stumps */
-.stumps-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 2px;
-    z-index: 6;
-}
-
-.stumps-top {
-    top: 10%;
-}
-
-.stumps-bottom {
-    bottom: 10%;
-}
-
-.stump {
     width: 3px;
-    height: 12px;
-    background: linear-gradient(90deg, #e8d4b8, #f5eee6, #d4c4a8);
-    border-radius: 1px;
+    height: 10%;
 }
 
-.bails {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -2px;
-    width: 12px;
-    height: 2px;
-    background: #d4a574;
-    border-radius: 1px;
-}
-
-.bails-bottom {
-    bottom: -2px;
-    top: auto;
-}
+/* ... existing return crease positioning ... */
 
 /* ============================================
-   BATSMAN MARKERS
+   BATSMAN MARKERS - 3D Top-Down View
    ============================================ */
 .batsman-marker {
     position: absolute;
@@ -573,20 +517,63 @@
 .batsman-nonstriker {
     left: 50%;
     top: 67%;
+    transform: translate(-50%, -50%) rotate(180deg);
+    /* Face bowler */
 }
 
-.batsman-icon {
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(145deg, #2563eb, #3b82f6);
-    border: 2px solid #93c5fd;
-    border-radius: 4px;
+.batsman-figure {
+    position: relative;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.6rem;
-    font-weight: 800;
-    color: white;
+}
+
+/* Shoulders/Body */
+.batsman-figure .shoulders {
+    position: absolute;
+    width: 28px;
+    height: 14px;
+    background: linear-gradient(to bottom, #ffffff, #e2e8f0);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+/* Helmet/Head */
+.batsman-figure .helmet {
+    position: absolute;
+    width: 16px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #2563eb, #1e40af);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Bat */
+.batsman-figure .bat {
+    position: absolute;
+    width: 8px;
+    height: 32px;
+    background: linear-gradient(90deg, #d4a574, #bfa07a);
+    border-radius: 2px;
+    top: 15px;
+    left: 22px;
+    /* Held to side */
+    transform: rotate(-15deg);
+    transform-origin: top center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border: 1px solid #8d6e4e;
+    z-index: 0;
+}
+
+.batsman-nonstriker .bat.non-striker-bat {
+    left: auto;
+    right: 22px;
+    transform: rotate(15deg);
 }
 
 /* ============================================

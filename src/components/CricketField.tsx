@@ -224,9 +224,21 @@ export function CricketField({
                 </div>
             </div>
 
-            {/* Batsmen */}
-            <div className="batsman-marker batsman-striker"><div className="batsman-icon">S</div></div>
-            <div className="batsman-marker batsman-nonstriker"><div className="batsman-icon">NS</div></div>
+            {/* Batsmen - Top-down 3D view */}
+            <div className="batsman-marker batsman-striker">
+                <div className="batsman-figure">
+                    <div className="shoulders"></div>
+                    <div className="helmet"></div>
+                    <div className="bat"></div>
+                </div>
+            </div>
+            <div className="batsman-marker batsman-nonstriker">
+                <div className="batsman-figure">
+                    <div className="shoulders"></div>
+                    <div className="helmet"></div>
+                    <div className="bat non-striker-bat"></div>
+                </div>
+            </div>
 
             {/* Umpires */}
             <div className="umpire-marker square-leg-umpire"><div className="umpire-icon">Sq L U</div></div>
