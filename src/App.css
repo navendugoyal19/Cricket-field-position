@@ -451,14 +451,19 @@
    PITCH
    ============================================ */
 /* Pitch - Enhanced Texture */
+/* Pitch Dimensions based on Reference Image */
+/* Pitch is 22 yards (66ft) long, 10ft wide */
+/* Popping crease is 4ft from bowling crease */
+/* Return creases are 4ft 4in from center (8ft 8in wide total) */
+
 .pitch {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 6%;
+    width: 8%;
+    /* Increased width for better visibility */
     height: 45%;
-    /* Realistic clay/dust texture */
     background-color: #c2a278;
     background-image:
         linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.05) 100%),
@@ -470,94 +475,117 @@
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Creases - Enhanced Visibility */
+/* Crease Lines */
 .crease {
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
-/* Wide Lines - INSIDE Return Crease */
-.wide-line-top-left,
-.wide-line-top-right,
-.wide-line-bottom-left,
-.wide-line-bottom-right {
-    width: 1px;
-    height: 10%;
-    /* Extend length */
-    background: rgba(255, 255, 255, 0.5);
-    border-left: 1px dashed rgba(255, 255, 255, 0.5);
-    /* Dashed for wide lines */
+/* Bowling Crease (The line stumps are on) */
+.bowling-crease-top {
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    width: 266%;
+    /* 8ft 8in wide (same as return creases) */
+    height: 2px;
 }
 
-/* Wide lines are approx 35 inches from center */
-.wide-line-top-left {
-    left: -30%;
-    top: 12%;
+.bowling-crease-bottom {
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    width: 266%;
+    height: 2px;
 }
 
-.wide-line-top-right {
-    right: -30%;
-    top: 12%;
+/* Popping Crease (4ft in front of bowling crease) */
+.popping-crease-top {
+    left: 50%;
+    top: 16%;
+    /* 4ft gap from 10% */
+    transform: translateX(-50%);
+    width: 400%;
+    /* Extends beyond return creases */
+    height: 3px;
 }
 
-.wide-line-bottom-left {
-    left: -30%;
-    bottom: 12%;
+.popping-crease-bottom {
+    left: 50%;
+    bottom: 16%;
+    transform: translateX(-50%);
+    width: 400%;
+    height: 3px;
 }
 
-.wide-line-bottom-right {
-    right: -30%;
-    bottom: 12%;
-}
-
-/* Return Creases - OUTSIDE Wide Lines */
-/* Return creases are 52 inches from center */
+/* Return Creases (Side limits) */
 .return-crease-top-left,
 .return-crease-top-right,
 .return-crease-bottom-left,
 .return-crease-bottom-right {
     width: 2px;
     height: 12%;
-    /* Longer */
+    /* Extends back from popping crease */
     background: rgba(255, 255, 255, 0.9);
 }
 
+/* 4ft 4in from center */
 .return-crease-top-left {
-    left: -45%;
-    top: 10%;
+    left: -83%;
+    top: 8%;
+    height: 10%;
 }
 
 .return-crease-top-right {
-    right: -45%;
-    top: 10%;
+    right: -83%;
+    top: 8%;
+    height: 10%;
 }
 
 .return-crease-bottom-left {
-    left: -45%;
-    bottom: 10%;
+    left: -83%;
+    bottom: 8%;
+    height: 10%;
 }
 
 .return-crease-bottom-right {
-    right: -45%;
+    right: -83%;
+    bottom: 8%;
+    height: 10%;
+}
+
+/* Wide Lines (Inside Return Crease) */
+/* 17 inches inside return crease */
+.wide-line-top-left,
+.wide-line-top-right,
+.wide-line-bottom-left,
+.wide-line-bottom-right {
+    width: 1px;
+    height: 8%;
+    /* From popping crease back */
+    background: rgba(255, 255, 255, 0.5);
+    border-left: 1px dashed rgba(255, 255, 255, 0.5);
+}
+
+.wide-line-top-left {
+    left: -55%;
+    top: 10%;
+}
+
+.wide-line-top-right {
+    right: -55%;
+    top: 10%;
+}
+
+.wide-line-bottom-left {
+    left: -55%;
     bottom: 10%;
 }
 
-.popping-crease-top {
-    left: 50%;
-    top: 12%;
-    transform: translateX(-50%);
-    width: 220%;
-    /* Wider to connect return creases */
-    height: 3px;
-}
-
-.popping-crease-bottom {
-    left: 50%;
-    bottom: 12%;
-    transform: translateX(-50%);
-    width: 220%;
-    height: 3px;
+.wide-line-bottom-right {
+    right: -55%;
+    bottom: 10%;
 }
 
 /* Stumps - 3D Effect */
@@ -618,18 +646,18 @@
     z-index: 20;
 }
 
-/* Striker - Slightly behind popping crease (in stance) */
+/* Striker - At popping crease (stance) */
 .batsman-striker {
     left: 50%;
-    top: 31.5%;
-    /* Moved up from 33% to be 'in' crease */
+    top: 16%;
+    /* At popping crease line */
 }
 
-/* Non-striker - At bowler's end popping crease */
+/* Non-striker - At bowling crease */
 .batsman-nonstriker {
     left: 50%;
-    top: 68.5%;
-    /* Moved down from 67% */
+    top: 90%;
+    /* At bowling crease line */
     transform: translate(-50%, -50%) rotate(180deg);
 }
 
