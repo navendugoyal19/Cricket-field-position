@@ -208,12 +208,20 @@ export function CricketField({
 
             {/* Pitch */}
             <div className="pitch">
+                {/* Creases */}
                 <div className="crease popping-crease-top" />
                 <div className="crease return-crease-top-left" />
                 <div className="crease return-crease-top-right" />
+                <div className="crease wide-line-top-left" />
+                <div className="crease wide-line-top-right" />
+
                 <div className="crease popping-crease-bottom" />
                 <div className="crease return-crease-bottom-left" />
                 <div className="crease return-crease-bottom-right" />
+                <div className="crease wide-line-bottom-left" />
+                <div className="crease wide-line-bottom-right" />
+
+                {/* Stumps */}
                 <div className="stumps-container stumps-top">
                     <div className="stump" /><div className="stump" /><div className="stump" />
                     <div className="bails" />

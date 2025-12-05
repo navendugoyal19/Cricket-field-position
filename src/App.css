@@ -450,6 +450,7 @@
 /* ============================================
    PITCH
    ============================================ */
+/* Pitch - Enhanced Texture */
 .pitch {
     position: absolute;
     left: 50%;
@@ -457,11 +458,16 @@
     transform: translate(-50%, -50%);
     width: 6%;
     height: 45%;
-    background: linear-gradient(90deg,
-            #a17f5f 0%, #c9a87a 20%, #d4b88a 50%, #c9a87a 80%, #a17f5f 100%);
+    /* Realistic clay/dust texture */
+    background-color: #c2a278;
+    background-image:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.05) 100%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%),
+        repeating-linear-gradient(0deg, transparent 0px, transparent 4px, rgba(0, 0, 0, 0.02) 4px, rgba(0, 0, 0, 0.02) 8px);
     border-radius: 2px;
     pointer-events: none;
     z-index: 5;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Creases - Enhanced Visibility */
@@ -469,6 +475,37 @@
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Wide Lines */
+.wide-line-top-left,
+.wide-line-top-right,
+.wide-line-bottom-left,
+.wide-line-bottom-right {
+    width: 2px;
+    height: 4%;
+    background: rgba(255, 255, 255, 0.6);
+    /* Slightly fainter */
+}
+
+.wide-line-top-left {
+    left: -45%;
+    top: 12%;
+}
+
+.wide-line-top-right {
+    right: -45%;
+    top: 12%;
+}
+
+.wide-line-bottom-left {
+    left: -45%;
+    bottom: 12%;
+}
+
+.wide-line-bottom-right {
+    right: -45%;
+    bottom: 12%;
 }
 
 .popping-crease-top {
@@ -498,6 +535,74 @@
 }
 
 /* ... existing return crease positioning ... */
+
+.return-crease-top-left {
+    left: -25%;
+    top: 12%;
+}
+
+.return-crease-top-right {
+    right: -25%;
+    top: 12%;
+}
+
+.return-crease-bottom-left {
+    left: -25%;
+    bottom: 12%;
+}
+
+.return-crease-bottom-right {
+    right: -25%;
+    bottom: 12%;
+}
+
+/* Stumps - 3D Effect */
+.stumps-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    /* Slightly wider gap */
+    z-index: 6;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.stumps-top {
+    top: 9%;
+}
+
+/* Adjusted for perspective */
+.stumps-bottom {
+    bottom: 9%;
+}
+
+.stump {
+    width: 4px;
+    /* Thicker stumps */
+    height: 14px;
+    background: linear-gradient(90deg, #e8d4b8 0%, #ffffff 50%, #d4c4a8 100%);
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bails {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -2px;
+    width: 16px;
+    /* Wider bails */
+    height: 3px;
+    background: linear-gradient(to bottom, #d4a574, #8d6e4e);
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.bails-bottom {
+    bottom: -2px;
+    top: auto;
+}
 
 /* ============================================
    BATSMAN MARKERS - 3D Top-Down View
