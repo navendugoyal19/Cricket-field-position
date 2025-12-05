@@ -189,7 +189,7 @@ function App() {
             <span className="logo-icon">🏏</span>
             Cricket Field Planner
           </h1>
-          <p className="tagline">Professional Field Position Tool</p>
+          <p className="tagline">Professional Field Position Tool by N.Goyal</p>
         </div>
       </header>
 
@@ -253,6 +253,11 @@ function App() {
         onClose={() => setModalMode(null)}
         onLoad={handleLoadSetup}
       />
+
+      {/* Footer */}
+      <footer className="footer">
+        <p>© 2024 N.Goyal. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
