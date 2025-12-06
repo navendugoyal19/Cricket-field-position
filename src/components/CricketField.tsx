@@ -40,8 +40,8 @@ const POSITION_LABELS = [
     { name: '3rd', x: 38, y: 28, size: 'small' },
     { name: '4th', x: 35, y: 29, size: 'small' },
 
-    // GULLY - INSIDE circle (x: 28%)
-    { name: 'Gully', x: 28, y: 32, size: 'large' },
+    // GULLY - 45° behind square (closer to slips than point)
+    { name: 'Gully', x: 30, y: 32, size: 'large' },
 
     // LEG SIDE CLOSE - INSIDE circle
     { name: 'Leg slip', x: 56, y: 26, size: 'small' },
@@ -50,8 +50,8 @@ const POSITION_LABELS = [
     { name: 'Silly point', x: 42, y: 36, size: 'small' },
     { name: 'Backward square', x: 72, y: 34, size: 'small' },
 
-    // POINT - INSIDE circle (x: 28%, not 24%)
-    { name: 'Point', x: 28, y: 42, size: 'large' },
+    // POINT - 90° square (same level as Square Leg)
+    { name: 'Point', x: 26, y: 42, size: 'large' },
     { name: 'Backward point', x: 26, y: 36, size: 'small' },
 
     // SQUARE LEG - INSIDE circle (x: 72%, not 76%)
