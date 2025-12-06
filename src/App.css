@@ -1155,6 +1155,49 @@
 
     .fielder-panel {
         width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .field-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .control-panel {
+        justify-content: center;
+    }
+
+    .fielder-panel {
+        max-height: 180px;
+    }
+
+    .fielder-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .position-label {
+        font-size: 0.5rem;
+        padding: 2px 4px;
+    }
+
+    .position-label.large {
+        font-size: 0.55rem;
+    }
+
+    .fielder-dot {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.5rem !important;
     }
 }
 
@@ -1164,7 +1207,11 @@
     }
 
     .logo {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+    }
+
+    .logo-icon {
+        font-size: 1.5rem;
     }
 
     .tagline {
@@ -1173,10 +1220,100 @@
 
     .control-panel {
         padding: 0.5rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .preset-select {
+        padding: 0.4rem 1.5rem 0.4rem 0.5rem;
+        font-size: 0.7rem;
     }
 
     .main-content {
-        padding: 1rem;
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .fielder-panel {
+        max-height: 150px;
+        padding: 0.5rem;
+    }
+
+    .panel-title {
+        font-size: 0.8rem;
+    }
+
+    .field-container {
+        padding: 0.5rem;
+    }
+
+    .position-label {
+        font-size: 0.45rem;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    .position-label.large {
+        font-size: 0.5rem;
+        padding: 2px 4px;
+    }
+
+    .fielder-dot {
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 0.45rem !important;
+    }
+
+    .fielder-marker.keeper .fielder-dot {
+        width: 26px !important;
+        height: 26px !important;
+    }
+
+    .fielder-name-label {
+        font-size: 0.4rem;
+        padding: 1px 4px;
+    }
+
+    .batsman-figure {
+        transform: scale(0.8);
+    }
+
+    .side-label {
+        font-size: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .main-content {
+        padding: 0.25rem;
+    }
+
+    .fielder-panel {
+        max-height: 120px;
+    }
+
+    .fielder-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .position-label.small {
+        display: none;
+    }
+
+    .fielder-dot {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .pitch {
+        width: 6%;
     }
 }
 
