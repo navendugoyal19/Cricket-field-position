@@ -1332,3 +1332,87 @@
     font-size: 0.75rem;
     color: #64748b;
 }
+
+/* ============================================
+   NIGHT MODE
+   ============================================ */
+.cricket-field.night-mode {
+    background:
+        radial-gradient(ellipse at center,
+            rgba(30, 60, 30, 0.9) 0%,
+            rgba(20, 50, 25, 0.95) 40%,
+            rgba(15, 40, 20, 1) 70%,
+            rgba(10, 30, 15, 1) 100%);
+    box-shadow:
+        inset 0 0 150px rgba(255, 255, 200, 0.1),
+        0 0 80px rgba(255, 220, 100, 0.15);
+}
+
+/* Floodlight effect overlay */
+.cricket-field.night-mode::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 120% 80% at 0% 0%, rgba(255, 255, 200, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 120% 80% at 100% 0%, rgba(255, 255, 200, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 120% 80% at 0% 100%, rgba(255, 255, 200, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 120% 80% at 100% 100%, rgba(255, 255, 200, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.cricket-field.night-mode .grass-texture {
+    background:
+        repeating-linear-gradient(90deg,
+            rgba(30, 70, 35, 0.4) 0px,
+            rgba(25, 55, 30, 0.4) 20px,
+            rgba(30, 70, 35, 0.4) 40px);
+    opacity: 0.7;
+}
+
+.cricket-field.night-mode .pitch {
+    background: linear-gradient(180deg,
+            #d4a85a 0%,
+            #c49548 25%,
+            #b88540 50%,
+            #c49548 75%,
+            #d4a85a 100%);
+    box-shadow: 0 0 20px rgba(255, 220, 100, 0.3);
+}
+
+.cricket-field.night-mode .boundary-rope {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.cricket-field.night-mode .thirty-yard-circle {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.cricket-field.night-mode .position-label {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.cricket-field.night-mode .fielder-dot {
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.5),
+        0 0 5px rgba(255, 255, 200, 0.3);
+}
+
+.cricket-field.night-mode .crease {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.cricket-field.night-mode .stump {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+/* Night mode toggle button style */
+.toggle-btn.night {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%);
+}

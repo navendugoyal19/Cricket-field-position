@@ -86,6 +86,7 @@ const POSITION_LABELS = [
 interface CricketFieldProps {
     fielders: Fielder[];
     isLeftHanded: boolean;
+    isNightMode: boolean;
     selectedId: string | null;
     draggingId: string | null;
     onMouseDown: (id: string) => void;
@@ -97,6 +98,7 @@ interface CricketFieldProps {
 export function CricketField({
     fielders,
     isLeftHanded,
+    isNightMode,
     selectedId,
     draggingId,
     onMouseDown,
@@ -124,7 +126,7 @@ export function CricketField({
         <div
             id="cricket-field"
             ref={fieldRef}
-            className="cricket-field"
+            className={`cricket-field ${isNightMode ? 'night-mode' : ''}`}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
             onMouseLeave={onMouseUp}

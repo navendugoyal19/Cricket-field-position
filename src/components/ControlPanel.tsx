@@ -3,10 +3,12 @@ import { FIELD_PRESETS } from '../utils/fieldPositions';
 interface ControlPanelProps {
   currentPreset: string;
   isLeftHanded: boolean;
+  isNightMode: boolean;
   canUndo: boolean;
   canRedo: boolean;
   onPresetChange: (presetId: string) => void;
   onToggleHandedness: () => void;
+  onToggleNightMode: () => void;
   onUndo: () => void;
   onRedo: () => void;
   onSave: () => void;
@@ -17,10 +19,12 @@ interface ControlPanelProps {
 export function ControlPanel({
   currentPreset,
   isLeftHanded,
+  isNightMode,
   canUndo,
   canRedo,
   onPresetChange,
   onToggleHandedness,
+  onToggleNightMode,
   onUndo,
   onRedo,
   onSave,
@@ -52,6 +56,18 @@ export function ControlPanel({
         >
           <span className={`toggle-option ${!isLeftHanded ? 'active' : ''}`}>Right</span>
           <span className={`toggle-option ${isLeftHanded ? 'active' : ''}`}>Left</span>
+        </button>
+      </div>
+
+      <div className="control-group">
+        <label className="control-label">Mode</label>
+        <button
+          className={`toggle-btn ${isNightMode ? 'night' : ''}`}
+          onClick={onToggleNightMode}
+          title="Toggle Day/Night Mode"
+        >
+          <span className={`toggle-option ${!isNightMode ? 'active' : ''}`}>☀️ Day</span>
+          <span className={`toggle-option ${isNightMode ? 'active' : ''}`}>🌙 Night</span>
         </button>
       </div>
 

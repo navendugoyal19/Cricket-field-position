@@ -20,6 +20,7 @@ function App() {
   const [fielders, setFielders] = useState<Fielder[]>(() => getPresetFielders('standard'));
   const [currentPreset, setCurrentPreset] = useState('standard');
   const [isLeftHanded, setIsLeftHanded] = useState(false);
+  const [isNightMode, setIsNightMode] = useState(false);
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -181,7 +182,7 @@ function App() {
   const currentPresetInfo = FIELD_PRESETS.find(p => p.id === currentPreset);
 
   return (
-    <div className="app">
+    <div className={`app ${isNightMode ? 'night-mode' : ''}`}>
       {/* Header */}
       <header className="header">
         <div className="header-content">
@@ -197,10 +198,12 @@ function App() {
       <ControlPanel
         currentPreset={currentPreset}
         isLeftHanded={isLeftHanded}
+        isNightMode={isNightMode}
         canUndo={historyIndex > 0}
         canRedo={historyIndex < history.length - 1}
         onPresetChange={handlePresetChange}
         onToggleHandedness={handleToggleHandedness}
+        onToggleNightMode={() => setIsNightMode(!isNightMode)}
         onUndo={handleUndo}
         onRedo={handleRedo}
         onSave={() => setModalMode('save')}
@@ -230,6 +233,7 @@ function App() {
           <CricketField
             fielders={fielders}
             isLeftHanded={isLeftHanded}
+            isNightMode={isNightMode}
             selectedId={selectedId}
             draggingId={draggingId}
             onMouseDown={setDraggingId}
