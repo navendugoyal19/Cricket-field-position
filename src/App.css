@@ -1333,6 +1333,22 @@
     color: #64748b;
 }
 
+.visitor-counter {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.visitor-counter img {
+    border-radius: 8px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.visitor-counter img:hover {
+    opacity: 1;
+}
+
 /* ============================================
    NIGHT MODE
    ============================================ */
